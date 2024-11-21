@@ -1,5 +1,5 @@
 "use client";
-import Sidebar from "@/component/Sidebar";
+import Sidebar from "@/components/Sidebar";
 import { Nfc } from "lucide-react";
 import { UserRound } from "lucide-react";
 import React from "react";
@@ -14,15 +14,18 @@ import { Linkedin } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
 import { useState } from "react";
+import CardShow from "@/components/Card/CardShow";
+import Techstack from "@/components/Card/Techstack";
+import { Button } from "@/components/ui/button";
 export default function Home() {
   const [show, setShow] = useState(false);
   return (
-    <div className="w-full flex  min-h-[100vh] text-color">
+    <div className="w-full flex bg-black min-h-[100vh] text-color">
       {/* sidebar  */}
       <div
         className={`${
           show ? "w-auto" : "w-auto"
-        }  xl::w-[10%]  text-color px-5 pb-10 pt-5 h-[100vh]  bg-sidebar`}
+        }  xl::w-[10%]  text-color px-5  pb-10 pt-5 top-0 sticky h-[100vh]  bg-sidebar`}
       >
         <div className="relative w-full">
           {" "}
@@ -111,27 +114,61 @@ export default function Home() {
           )}
         </div>
       </div>
-      <div className="w-[80%] px-20 py-5 ">
-        <div className="w-full py-10 space-y-3 ">
-          <h1 className="text-5xl">Rikin Tuladhar</h1>
-          <h1 className="text-5xl">Welcome To <span className="text-primary">My Digital World</span></h1>
-          <p>Designing and Crafting the Web</p>
-          <p>
-            I am an energetic and enthuastic computer scinece student with a
-            string desire to learn and train with professional in UI/UX and
-            Frontend development
-          </p>
-          <div className="flex w-full space-x-5">
-            <button className="flex  gap-1 justify-center items-center bg-[#EDEDED] rounded-md text-sm  text-black py-2 px-5">
-              <Nfc size={20} />
-              <span> Contact Me</span>
-            </button>
-            <button className="bg-[#111111] text-white flex  gap-1  justify-center items-center  rounded-md  text-sm py-2 px-5">
-              <UserRound size={20} />
-              <span>About</span>
-            </button>
-            <button></button>
-          </div>
+      <div className=" w-[80%]  py-5">
+        {introduction()}
+        {RecentProjects()}
+        <div className="px-20 mt-20">
+      <h2 className="text-xl ">Tech Stacks</h2>
+      <div className="grid w-full grid-cols-2 gap-10 py-10 place-items-center">
+       <Techstack/>
+       <Techstack/>
+       <Techstack/>
+       <Techstack/>
+      </div>
+      <div className="flex justify-center w-full"><Button>View More</Button></div>
+    </div>
+      </div>
+    </div>
+  );
+}
+function RecentProjects() {
+  return (
+    <div className="px-20">
+      <h2 className="text-xl ">Recent Projects</h2>
+      <div className="grid w-full grid-cols-2 gap-10 py-10 place-items-center">
+        <CardShow />
+        <CardShow />
+        <CardShow />
+        <CardShow />
+      </div>
+      <div className="flex items-center justify-center w-full py-2 "><Button>View More</Button></div>
+    </div>
+  );
+}
+
+function introduction() {
+  return (
+    <div className="w-[80%] px-20 py-5 ">
+      <div className="w-full py-10 space-y-3 ">
+        <h1 className="text-5xl">Rikin Tuladhar</h1>
+        <h1 className="text-5xl">
+          Welcome To <span className="text-primary">My Digital World</span>
+        </h1>
+        <p>Designing and Crafting the Web</p>
+        <p>
+          I am an energetic and enthuastic computer scinece student with a
+          string desire to learn and train with professional in UI/UX and
+          Frontend development
+        </p>
+        <div className="flex w-full space-x-5">
+          <button className="flex  gap-1 justify-center items-center bg-[#EDEDED] rounded-md text-sm  text-black py-2 px-5">
+            <Nfc size={20} />
+            <span> Contact Me</span>
+          </button>
+          <button className="bg-[#111111] text-white flex  gap-1  justify-center items-center  rounded-md  text-sm py-2 px-5">
+            <UserRound size={20} />
+            <span>About</span>
+          </button>
         </div>
       </div>
     </div>
