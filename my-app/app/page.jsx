@@ -2,7 +2,7 @@
 import Sidebar from "@/components/Sidebar";
 import { Nfc } from "lucide-react";
 import { UserRound } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { Telescope } from "lucide-react";
 import { FolderGit2 } from "lucide-react";
@@ -17,141 +17,139 @@ import { useState } from "react";
 import CardShow from "@/components/Card/CardShow";
 import Techstack from "@/components/Card/Techstack";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 export default function Home() {
   const [show, setShow] = useState(false);
+  const [mobileView, setMobileView] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+  console.log(windowWidth);
+  console.log("This si mobile view", mobileView);
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      setMobileView(window.innerWidth < 500);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+    }
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
+  }, []);
+
+  const techstack = [
+    {
+      id: 1,
+      name: "React Js",
+      description: "This is react js",
+      image: "/techstack/react.png",
+    },
+    {
+      id: 2,
+      name: "Next Js",
+      description: "This is next js",
+      image: "/techstack/nextjs.png",
+    },
+    {
+      id: 3,
+      name: "Spring Boot",
+      description: "This is spring boot",
+      image: "/techstack/spring.png",
+    },
+    {
+      id: 4,
+      name: "Tailwind",
+      description: "This is tailwind",
+      image: "/techstack/tailwind.png",
+    },
+    {
+      id: 5,
+      name: "TypeScript",
+      description: "This is type script",
+      image: "/techstack/typescript.webp",
+    },
+    {
+      id: 5,
+      name: "Javascript",
+      description: "This is type script",
+      image: "/techstack/js.webp",
+    },
+    {
+      id: 5,
+      name: "Java",
+      description: "This is type script",
+      image: "/techstack/java.jfif",
+    },
+    {
+      id: 5,
+      name: "Firebase",
+      description: "This is type script",
+      image: "/techstack/firebase.png",
+    },
+  ];
   return (
-    <div className="w-full flex bg-black min-h-[100vh] text-color">
-      {/* sidebar  */}
-      <div
-        className={`${
-          show ? "w-auto" : "w-auto"
-        }  xl::w-[10%]  text-color px-5  pb-10 pt-5 top-0 sticky h-[100vh]  bg-sidebar`}
-      >
-        <div className="relative w-full">
-          {" "}
-          <div
-            onClick={(e) => setShow(!show)}
-            className={`absolute ${!show ? "right-2" : "right-1"} `}
-          >
-            {" "}
-            {show ? <ChevronRight /> : <ChevronLeft />}
-          </div>
-        </div>
-        <div>
-          <h5 className={`py-2 font-bold ${show ? "mt-5" : "mt-0"} `}>Menu</h5>
-          {!show ? (
-            <div className="px-5 py-2 space-y-4">
-              <p className="flex items-center cursor-pointer gap-x-3">
-                {" "}
-                <Telescope /> <span>Explore</span>
-              </p>
-              <p className="flex items-center gap-x-3">
-                {" "}
-                <FolderGit2 /> <span>Project</span>{" "}
-              </p>
-              <p className="flex items-center gap-x-3">
-                <ChevronsLeftRightEllipsis /> <span> Tech Stack</span>
-              </p>
-              <p className="flex items-center gap-x-3">
-                <Info /> <span>About</span>
-              </p>
-              <p className="flex items-center gap-x-3">
-                {" "}
-                <Contact />
-                <span>Contact</span>
-              </p>
-            </div>
-          ) : (
-            <div className="pl-4 space-y-4">
-              <div>
-                {" "}
-                <Telescope />{" "}
-              </div>
-              <div>
-                {" "}
-                <FolderGit2 />{" "}
-              </div>
-              <div>
-                {" "}
-                <ChevronsLeftRightEllipsis />
-              </div>
-              <div>
-                {" "}
-                <Info />
-              </div>
-              <div>
-                {" "}
-                <Contact />
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="w-full h-[1px] my-4 bg-color"></div>
-        <div>
-          <h5 className="py-2 font-bold">Connect</h5>
-          {!show ? (
-            <div className="px-5 py-2 space-y-4">
-              <p className="flex items-center cursor-pointer gap-x-3">
-                {" "}
-                <Github /> <span>Github</span>
-              </p>
-              <p className="flex items-center cursor-pointer gap-x-3">
-                <Linkedin />
-                <span>Linkedin</span>
-              </p>
-            </div>
-          ) : (
-            <div className="pl-4 space-y-4">
-              <div>
-                {" "}
-                <Github />
-              </div>
-              <div>
-                {" "}
-                <Linkedin />
-              </div>
-            </div>
-          )}
+    <>
+      <div className="w-full flex relative bg-black min-h-[100vh] text-color">
+        {/* sidebar  */}(
+      <Sidebar/>
+        
+        <div className=" w-full md:w-[80%]  py-5">
+          {introduction()}
+          {RecentProjects()}
+          {techstacks(techstack)}
         </div>
       </div>
-      <div className=" w-[80%]  py-5">
-        {introduction()}
-        {RecentProjects()}
-        <div className="px-20 mt-20">
-      <h2 className="text-xl ">Tech Stacks</h2>
-      <div className="grid w-full grid-cols-2 gap-10 py-10 place-items-center">
-       <Techstack/>
-       <Techstack/>
-       <Techstack/>
-       <Techstack/>
-      </div>
-      <div className="flex justify-center w-full"><Button>View More</Button></div>
-    </div>
-      </div>
-    </div>
+    </>
   );
 }
+function techstacks(techstack) {
+  return <div className="px-5 mt-20 md:px-20">
+    <h2 className="text-xl ">Tech Stacks</h2>
+    <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
+      {techstack.map((tech, i) => (
+        <Techstack
+          name={tech.name}
+          image={tech.image}
+          description={tech.description}
+          key={i} />
+      ))}
+    </div>
+    <div className="flex justify-center w-full">
+      <Link href={"/techstacks"}><Button>View More</Button></Link>
+    </div>
+  </div>;
+}
+
 function RecentProjects() {
   return (
-    <div className="px-20">
+    <div className="px-5 md:px-20">
       <h2 className="text-xl ">Recent Projects</h2>
-      <div className="grid w-full grid-cols-2 gap-10 py-10 place-items-center">
+      <div className="grid w-full grid-cols-1 gap-10 py-10 md:grid-cols-2 place-items-center">
         <CardShow />
         <CardShow />
         <CardShow />
         <CardShow />
       </div>
-      <div className="flex items-center justify-center w-full py-2 "><Button>View More</Button></div>
+      <div className="flex items-center justify-center w-full py-2 ">
+       <Link href={"/projects"}> <Button>View More</Button></Link>
+      </div>
     </div>
   );
 }
 
 function introduction() {
   return (
-    <div className="w-[80%] px-20 py-5 ">
+    <div className="w-full md:w-[80%] px-5 md:px-20 py-5 ">
       <div className="w-full py-10 space-y-3 ">
-        <h1 className="text-5xl">Rikin Tuladhar</h1>
-        <h1 className="text-5xl">
+        <h1 className="text-4xl md:text-5xl">Rikin Tuladhar</h1>
+        <h1 className="text-4xl md:text-5xl">
           Welcome To <span className="text-primary">My Digital World</span>
         </h1>
         <p>Designing and Crafting the Web</p>

@@ -12,17 +12,17 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 
-const CardShow = () => {
+const CardShow = ({name,image,description}) => {
   return (
-    <Card className="w-[25rem] flex bg-black text-color">
+    <Card className="w-[15rem] md:w-[25rem] flex bg-black text-color">
       <div className="w-[90%] py-4 px-4">
         <div>
-          <h3 className="text-2xl">React js</h3>
+          <h3 className="font-bold">{name}</h3>
         </div>
-        <p>This is react js</p>
+        <p>{description}</p>
       </div>
       <div className="w-[20%] flex items-center justify-center ">
-        <img src={`/techstack/react.png`} width={50} alt="image of product" />
+        <img src={image} className="size-16" alt="image of product" />
       </div>
     </Card>
   );

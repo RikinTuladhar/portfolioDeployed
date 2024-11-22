@@ -14,7 +14,7 @@ import Image from "next/image";
 
 const CardShow = () => {
   return (
-    <Card className="w-[25rem] bg-black text-color">
+    <Card className="w-[15rem] md:w-[25rem] bg-black text-color">
       <CardHeader>
         <div className="w-full">
           <img
