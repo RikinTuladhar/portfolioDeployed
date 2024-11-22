@@ -106,7 +106,24 @@ function education() {
       <h2 className="text-3xl">Education</h2>
       <div className="w-full py-2 space-y-4 md:py-7 ">
         <div className="space-y-2">
-          <p className="text-xl">+2</p>
+          <p className="text-xl"># Baclelors Of Computer Application (BCA)</p>
+
+          <ul className="px-10 space-y-4 font-sans text-justify list-disc">
+            <li>
+              {" "}
+              I am currently studying BCA at Kathmandu Business Campus, located
+              in Banasthali, Kathmandu, where I maintain an average grade of
+              3.5.
+            </li>
+            <li>
+              The program offers a wide range of courses that are helping me
+              build a strong foundation in the IT field, enhancing my skills and
+              knowledge in various aspects of technology.
+            </li>
+          </ul>
+        </div>
+        <div className="space-y-2">
+          <p className="text-xl"># +2</p>
 
           <ul className="px-10 space-y-4 font-sans text-justify list-disc">
             <li>
@@ -128,7 +145,7 @@ function education() {
           </ul>
         </div>
         <div className="space-y-2">
-          <p className="text-xl">SEE</p>
+          <p className="text-xl"># SEE</p>
 
           <ul className="px-10 space-y-4 font-sans text-justify list-disc">
             <li>

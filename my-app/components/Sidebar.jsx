@@ -13,6 +13,7 @@ import CardShow from "@/components/Card/CardShow";
 import Techstack from "@/components/Card/Techstack";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Mail } from "lucide-react";
 const Sidebar = () => {
   const [show, setShow] = useState(false);
   return (
@@ -35,25 +36,40 @@ const Sidebar = () => {
         <h5 className={`py-2 font-bold ${show ? "mt-5" : "mt-0"} `}>Menu</h5>
         {!show ? (
           <div className="px-5 py-2 space-y-4">
-            <Link href={"/"} className="flex items-center cursor-pointer gap-x-3">
+            <Link
+              href={"/"}
+              className="flex items-center cursor-pointer gap-x-3"
+            >
               {" "}
               <Telescope /> <span>Explore</span>
             </Link>
-            <Link href={"/projects"} className="flex items-center cursor-pointer gap-x-3">
+            <Link
+              href={"/projects"}
+              className="flex items-center cursor-pointer gap-x-3"
+            >
               {" "}
               <FolderGit2 /> <span>Project</span>{" "}
             </Link>
-            <Link href={"/techstacks"} className="flex items-center cursor-pointer gap-x-3">
+            <Link
+              href={"/techstacks"}
+              className="flex items-center cursor-pointer gap-x-3"
+            >
               <ChevronsLeftRightEllipsis /> <span> Tech Stack</span>
             </Link>
-            <Link href={"/about"} className="flex items-center cursor-pointer gap-x-3">
+            <Link
+              href={"/about"}
+              className="flex items-center cursor-pointer gap-x-3"
+            >
               <Info /> <span>About</span>
             </Link>
-            <Link href={"/contacts"} className="flex items-center cursor-pointer gap-x-3">
+            {/* <Link
+              href={"/contacts"}
+              className="flex items-center cursor-pointer gap-x-3"
+            >
               {" "}
               <Contact />
               <span>Contact</span>
-            </Link>
+            </Link> */}
           </div>
         ) : (
           <div className="pl-4 space-y-4">
@@ -73,10 +89,10 @@ const Sidebar = () => {
               {" "}
               <Info />
             </div>
-            <div>
+            {/* <div>
               {" "}
               <Contact />
-            </div>
+            </div> */}
           </div>
         )}
       </div>
@@ -85,14 +101,31 @@ const Sidebar = () => {
         <h5 className="py-2 font-bold">Connect</h5>
         {!show ? (
           <div className="px-5 py-2 space-y-4">
-            <p className="flex items-center cursor-pointer gap-x-3">
+            <a
+              target="_blank"
+              href={"https://github.com/RikinTuladhar"}
+              className="flex items-center cursor-pointer gap-x-3"
+            >
               {" "}
               <Github /> <span>Github</span>
-            </p>
-            <p className="flex items-center cursor-pointer gap-x-3">
+            </a>
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/rikin-tuladhar-0757a7228/"
+              className="flex items-center cursor-pointer gap-x-3"
+            >
               <Linkedin />
               <span>Linkedin</span>
-            </p>
+            </a>
+            <a
+              target="_blank"
+              href="mailto:rikin.tuladhar@gmail.com"
+              className="flex items-center cursor-pointer gap-x-3"
+            >
+              <Mail />
+
+              <span>Send Mail</span>
+            </a>
           </div>
         ) : (
           <div className="pl-4 space-y-4">
@@ -103,6 +136,10 @@ const Sidebar = () => {
             <div>
               {" "}
               <Linkedin />
+            </div>
+            <div>
+              {" "}
+              <Mail />
             </div>
           </div>
         )}
