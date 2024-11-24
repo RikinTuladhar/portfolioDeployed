@@ -8,20 +8,25 @@ import { Github } from "lucide-react";
 import { Linkedin } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardShow from "@/components/Card/CardShow";
 import Techstack from "@/components/Card/Techstack";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Mail } from "lucide-react";
+import toast, { Toaster } from 'react-hot-toast';
 const Sidebar = () => {
   const [show, setShow] = useState(false);
+  useEffect(()=>{
+    toast('Portfolio is not completed yett!!!')
+},[])
   return (
     <div
       className={`${
         show ? "w-auto" : "w-auto"
       }    text-color px-5  pb-10 pt-5 top-0 sticky h-[100vh]  bg-sidebar`}
     >
+       <Toaster />
       <div className="relative w-full">
         {" "}
         <div

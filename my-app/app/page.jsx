@@ -18,18 +18,20 @@ import CardShow from "@/components/Card/CardShow";
 import Techstack from "@/components/Card/Techstack";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { handleMobileView } from "@/redux/mobileView";
+import MobileSideBar from "@/components/MobileSideBar";
 export default function Home() {
-  const [show, setShow] = useState(false);
-  const [mobileView, setMobileView] = useState(false);
+  const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 0
   );
-  console.log(windowWidth);
-  console.log("This si mobile view", mobileView);
+
+  const mobileView = useSelector((s) => s?.mobileView.mobileView);
+  const [showMenu, setShowMenu] = useState(false);
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-      setMobileView(window.innerWidth < 500);
     };
 
     if (typeof window !== "undefined") {
@@ -43,6 +45,12 @@ export default function Home() {
       }
     };
   }, []);
+
+  useEffect(() => {
+    dispatch(handleMobileView(windowWidth <= 500));
+  }, [windowWidth, dispatch]);
+
+  console.log("This si mobile view", mobileView);
 
   const techstack = [
     {
@@ -96,35 +104,46 @@ export default function Home() {
   ];
   return (
     <>
-      <div className="w-full flex relative bg-black min-h-[100vh] text-color">
-        {/* sidebar  */}(
-      <Sidebar/>
-        
-        <div className=" w-full md:w-[80%]  py-5">
+      <div
+        className={`w-full ${
+          mobileView ? "block" : " flex"
+        }  relative bg-black min-h-[100vh] text-color`}
+      >
+        {/* sidebar  */}
+        {!mobileView && <Sidebar />}
+
+        <div className=" w-full relative md:w-[80%]  py-0 md:py-5">
           {introduction()}
           {RecentProjects()}
           {techstacks(techstack)}
         </div>
+
+        {mobileView && <MobileSideBar />}
       </div>
     </>
   );
 }
 function techstacks(techstack) {
-  return <div className="px-5 mt-20 md:px-20">
-    <h2 className="text-xl ">Tech Stacks</h2>
-    <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
-      {techstack.map((tech, i) => (
-        <Techstack
-          name={tech.name}
-          image={tech.image}
-          description={tech.description}
-          key={i} />
-      ))}
+  return (
+    <div className="px-5 mt-20 md:px-20">
+      <h2 className="text-xl ">Tech Stacks</h2>
+      <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
+        {techstack.map((tech, i) => (
+          <Techstack
+            name={tech.name}
+            image={tech.image}
+            description={tech.description}
+            key={i}
+          />
+        ))}
+      </div>
+      <div className="flex justify-center w-full">
+        <Link href={"/techstacks"}>
+          <Button>View More</Button>
+        </Link>
+      </div>
     </div>
-    <div className="flex justify-center w-full">
-      <Link href={"/techstacks"}><Button>View More</Button></Link>
-    </div>
-  </div>;
+  );
 }
 
 function RecentProjects() {
@@ -138,7 +157,10 @@ function RecentProjects() {
         <CardShow />
       </div>
       <div className="flex items-center justify-center w-full py-2 ">
-       <Link href={"/projects"}> <Button>View More</Button></Link>
+        <Link href={"/projects"}>
+          {" "}
+          <Button>View More</Button>
+        </Link>
       </div>
     </div>
   );

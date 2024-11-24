@@ -1,12 +1,47 @@
+"use client";
 import CardShow from "@/components/Card/CardShow";
+import MobileSideBar from "@/components/MobileSideBar";
 import Sidebar from "@/components/Sidebar";
 import Container from "@/layout/Container";
-import React from "react";
+import { handleMobileView } from "@/redux/mobileView";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const page = () => {
+  const dispatch = useDispatch();
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+
+  const mobileView = useSelector((s) => s?.mobileView.mobileView);
+  const [showMenu, setShowMenu] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+    }
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    dispatch(handleMobileView(windowWidth <= 500));
+  }, [windowWidth, dispatch]);
   return (
-    <div className="w-full flex relative bg-black min-h-[100vh] text-color">
-      <Sidebar />
+    <div
+      className={`w-full ${
+        mobileView ? " block" : " flex"
+      }  relative bg-black min-h-[100vh] text-color`}
+    >
+      {!mobileView && <Sidebar />}
       <Container>
         <div className="space-y-2">
           <h1 className="text-3xl md:text-4xl">Showcase Work.</h1>
@@ -22,6 +57,7 @@ const page = () => {
           </div>
         </div>
       </Container>
+      {mobileView && <MobileSideBar />}
     </div>
   );
 };
