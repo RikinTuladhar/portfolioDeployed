@@ -183,11 +183,11 @@ function introduction() {
         <div className="flex w-full space-x-5">
           <button className="flex  gap-1 justify-center items-center bg-[#EDEDED] rounded-md text-sm  text-black py-2 px-5">
             <Nfc size={20} />
-            <span> Contact Me</span>
+            <Link href={"/about"}> Contact Me</Link>
           </button>
           <button className="bg-[#111111] text-white flex  gap-1  justify-center items-center  rounded-md  text-sm py-2 px-5">
             <UserRound size={20} />
-            <span>About</span>
+            <Link  href={"/about"}>About</Link>
           </button>
         </div>
       </div>

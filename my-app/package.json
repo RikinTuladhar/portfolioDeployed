@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "jose": "^5.9.3",
+    "zod": "^3.23.8",
     "@radix-ui/react-slot": "^1.1.0",
     "@reduxjs/toolkit": "^2.3.0",
     "class-variance-authority": "^0.7.0",
