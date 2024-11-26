@@ -6,8 +6,19 @@ import Container from "@/layout/Container";
 import { handleMobileView } from "@/redux/mobileView";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import projectApi from "../api/projects/projectsApi";
 
 const page = () => {
+  const { getProjects } = projectApi();
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
+    getProjects()
+      .then((res) => {
+        setProjects(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 0
@@ -50,10 +61,13 @@ const page = () => {
         <div className="py-10">
           <h2 className="text-3xl">Some of my projects</h2>
           <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
-            <CardShow />
-            <CardShow />
-            <CardShow />
-            <CardShow />
+            {projects.length > 0 ? (
+              projects.map((project, i) => (
+                <CardShow project={project} key={i} />
+              ))
+            ) : (
+              <div className="text-3xl text-white">Loading...</div>
+            )}
           </div>
         </div>
       </Container>
