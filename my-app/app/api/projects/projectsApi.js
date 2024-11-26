@@ -1,4 +1,4 @@
-import getCookie from "@/helper/getCookie";
+
 import axios from "axios";
 
 const projectApi = () => {

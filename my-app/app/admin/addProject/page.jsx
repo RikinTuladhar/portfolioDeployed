@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import projectApi from "@/app/api/projects/projectsApi";
-import getCookie from "@/helper/getCookie";
+
 import Cookies from "js-cookie";
 const page = () => {
   const { addProject } = projectApi();
