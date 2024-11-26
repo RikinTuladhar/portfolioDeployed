@@ -21,6 +21,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { handleMobileView } from "@/redux/mobileView";
 import MobileSideBar from "@/components/MobileSideBar";
+import projectApi from "./api/projects/projectsApi";
 export default function Home() {
   const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(
@@ -147,14 +148,26 @@ function techstacks(techstack) {
 }
 
 function RecentProjects() {
+  const { getProjects } = projectApi();
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
+    getProjects()
+      .then((res) => {
+        setProjects(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="px-5 md:px-20">
       <h2 className="text-xl ">Recent Projects</h2>
       <div className="grid w-full grid-cols-1 gap-10 py-10 md:grid-cols-2 place-items-center">
-        <CardShow />
-        <CardShow />
-        <CardShow />
-        <CardShow />
+        {projects.length > 0 ? (projects.map((project, i) => (
+          <CardShow project={project} key={i} />
+        ))):(
+          <div className="text-3xl text-white">
+            Loading...
+          </div>
+        )}
       </div>
       <div className="flex items-center justify-center w-full py-2 ">
         <Link href={"/projects"}>
@@ -187,7 +200,7 @@ function introduction() {
           </button>
           <button className="bg-[#111111] text-white flex  gap-1  justify-center items-center  rounded-md  text-sm py-2 px-5">
             <UserRound size={20} />
-            <Link  href={"/about"}>About</Link>
+            <Link href={"/about"}>About</Link>
           </button>
         </div>
       </div>

@@ -11,7 +11,7 @@ export async function createSession(email) {
   const session = await encrypt( { email, expiresAt });
 
   (await cookies()).set("session",session,{
-    httpOnly:true,
+    // httpOnly:true, need to remove as I was not able to extract cookie in frontend
     secure:true,
     expires:expiresAt
   })

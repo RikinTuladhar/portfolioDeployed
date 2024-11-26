@@ -5,7 +5,7 @@ import React from "react";
 import { logout } from "../login/action";
 const navItems = [
   { label: "Dashboard", href: "/admin" },
-  { label: "Analytics", href: "/analytics" },
+  { label: "Add Project", href: "/admin/addProject" },
   { label: "Users", href: "/users" },
   { label: "Settings", href: "/settings" },
   { label: "Logout", href: "/login" },
@@ -24,7 +24,7 @@ function sidebar() {
   return (
     <div className="w-[20%]">
       {/* Mobile toggle button */}
-      <button className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-gray-900 rounded-md">
+      <button className="fixed z-50 p-2 bg-gray-900 rounded-md lg:hidden top-4 left-4">
         Menu
       </button>
 
@@ -51,9 +51,9 @@ function sidebar() {
             ))}
           </nav>
           <div className="p-4 bg-gray-800">
-            <div className="w-full grid place-items-center">
+            <div className="grid w-full place-items-center">
               <button
-                className="px-4 hover:bg-slate-400 hover:text-black py-2 border rounded-xl my-2"
+                className="px-4 py-2 my-2 border hover:bg-slate-400 hover:text-black rounded-xl"
                 onClick={logout}
               >
                 Logout{" "}

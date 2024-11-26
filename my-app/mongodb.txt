@@ -1,0 +1,4 @@
+username= rikintuladhar
+password = NqCPLN0HVXB4twTL
+
+mongodb+srv://rikintuladhar:<db_password>@cluster0.rh4xq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
