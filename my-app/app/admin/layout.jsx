@@ -6,9 +6,10 @@ import { logout } from "../login/action";
 const navItems = [
   { label: "Dashboard", href: "/admin" },
   { label: "Add Project", href: "/admin/addProject" },
+  { label: "Add Tech Stack", href: "/admin/addTechStack" },
   { label: "Users", href: "/users" },
   { label: "Settings", href: "/settings" },
-  { label: "Logout", href: "/login" },
+ 
 ];
 const layout = ({ children }) => {
   return (
