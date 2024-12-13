@@ -19,9 +19,9 @@ const LoadCardShow = () => {
       <CardHeader>
         <div className="w-full">
           {" "}
-          <div class="flex items-center justify-center  h-48 bg-gray-300 rounded  dark:bg-gray-700">
+          <div className="flex items-center justify-center h-48 bg-gray-300 rounded dark:bg-gray-700">
             <svg
-              class=" h-10 text-gray-200 dark:text-gray-600"
+              className="h-10 text-gray-200 dark:text-gray-600"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
@@ -32,16 +32,16 @@ const LoadCardShow = () => {
           </div>{" "}
         </div>
         <CardTitle className="py-4">
-          <div role="status" class="max-w-sm animate-pulse">
+          <div role="status" className="max-w-sm animate-pulse">
             {" "}
-            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+            <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
           </div>
         </CardTitle>
         <CardDescription>
           {" "}
-          <div role="status" class="max-w-sm animate-pulse">
+          <div role="status" className="max-w-sm animate-pulse">
             {" "}
-            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-20 mb-4"></div>
+            <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-20 mb-4"></div>
           </div>
         </CardDescription>
       </CardHeader>
@@ -50,13 +50,13 @@ const LoadCardShow = () => {
           <div className="grid items-center w-full gap-2">
             <div className="flex  flex-col    space-y-1.5">
               <label htmlFor="name">Started Date: </label>
-              <p className="text-gray-500 ">
+              <div className="text-gray-500 ">
                 {" "}
-                <div role="status" class="max-w-sm animate-pulse">
+                <div role="status" className="max-w-sm animate-pulse">
                   {" "}
-                  <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-20 mb-4"></div>
+                  <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-20 mb-4"></div>
                 </div>
-              </p>
+              </div>
             </div>
             <div className="flex flex-col space-y-1.5">
               <label htmlFor="framework">Tech Stacks</label>
@@ -65,9 +65,9 @@ const LoadCardShow = () => {
                 className="flex flex-wrap gap-x-5"
               >
                 {Array.from({ length: 6 }).map((tech, i) => (
-                  <div class="flex items-center justify-center bg-gray-300 rounded  dark:bg-gray-700">
+                  <div key={i} className="flex items-center justify-center bg-gray-300 rounded dark:bg-gray-700">
                     <svg
-                      class="w-10 h-10 text-gray-200 dark:text-gray-600"
+                      className="w-10 h-10 text-gray-200 dark:text-gray-600"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"

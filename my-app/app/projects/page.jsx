@@ -7,8 +7,10 @@ import { handleMobileView } from "@/redux/mobileView";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import projectApi from "../api/projects/projectsApi";
+import LoadCardShow from "@/components/Card/LoadCardShow";
 
 const page = () => {
+  const array = [1, 2, 3, 4];
   const { getProjects } = projectApi();
   const [projects, setProjects] = useState([]);
   useEffect(() => {
@@ -61,13 +63,15 @@ const page = () => {
         <div className="py-10">
           <h2 className="text-3xl">Some of my projects</h2>
           <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
-            {projects.length > 0 ? (
-              projects.map((project, i) => (
-                <CardShow project={project} key={i} />
-              ))
-            ) : (
-              <div className="text-3xl text-white">Loading...</div>
-            )}
+            {projects && projects.length > 0
+              ? projects.map((project, i) => (
+                  <CardShow project={project} key={i} />
+                ))
+              : array.map((_, i) => (
+                  <span key={i}>
+                    <LoadCardShow key={i} />
+                  </span>
+                ))}
           </div>
         </div>
       </Container>

@@ -42,7 +42,7 @@ export async function POST(req) {
       return NextResponse.json({ message: "Inserted Tech Stack" }, { status: 201 });
     } catch (error) {
       return NextResponse.json(
-        { message: "Cannot add tech stack" },
+        { message: "Cannot add tech stack",error },
         { status: 500 }
       );
     }

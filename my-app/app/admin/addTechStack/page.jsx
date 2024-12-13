@@ -5,17 +5,19 @@ import techstackApi from "@/app/api/techstack/techstackApi";
 import Cookies from "js-cookie";
 const Page = () => {
   const { getTechStacks } = techstackApi();
-  const { addProject } = projectApi();
+  const { addTechStack } = techstackApi();
   const [token, setToken] = useState("");
   const [filtered, setFiltered] = useState([]);
   const [searching, setSearching] = useState("");
-  console.log("filtering", filtered);
+
   const [formData, setFormData] = useState({
     title: "",
     image: "/techstack/",
+    category: "",
   });
+
   const [techOptions, setTechOptions] = useState([]);
-  console.log(techOptions);
+
   useEffect(() => {
     (async () => {
       const res = await getTechStacks();
@@ -23,8 +25,6 @@ const Page = () => {
       setTechOptions(data);
     })();
   }, []);
-
-  console.log(formData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,14 +36,20 @@ const Page = () => {
 
     // Prepare data for submission
     const projectData = { ...formData };
-    console.log(projectData);
+    console.log("submitting", projectData);
+
     // Call the parent function to add the project
-    addProject(token, projectData);
+    addTechStack(token, projectData)
+      .then((res) => {
+        alert(res);
+      })
+      .catch((err) => alert("Error when inserting", err));
 
     // Reset form
     setFormData({
       title: "",
       image: "",
+      category: "",
     });
   };
 
@@ -62,7 +68,6 @@ const Page = () => {
     const filtering = techOptions.filter((i) =>
       i.title.toLowerCase().includes(value.toLowerCase())
     );
-    console.log("inside filtering function", filtering);
     setFiltered(filtering);
   }
 
@@ -108,6 +113,29 @@ const Page = () => {
               required
             />
           </div>
+          <div className="mb-4">
+            <label
+              className="block mb-2 font-medium text-gray-700"
+              htmlFor="title"
+            >
+              Category
+            </label>
+            <select
+              id="category"
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-lg"
+              required
+            >
+              <option defaultValue disabled value="">
+                Select Category
+              </option>
+              <option value="Front End">Front-End</option>
+              <option value="Back-End">Back-End</option>
+              <option value="Database">Database</option>
+            </select>
+          </div>
 
           <button
             type="submit"
@@ -118,7 +146,7 @@ const Page = () => {
         </form>
       </div>
 
-      <div className="w-full bg-slate-200 my-10 rounded-xl ">
+      <div className="w-full my-10 bg-slate-200 rounded-xl ">
         <div className="px-10 py-5 space-y-3">
           <h1 className="text-xl font-bold ">Tech Stack Already Exist</h1>
           <input
@@ -128,23 +156,48 @@ const Page = () => {
           />
         </div>
         <hr />
-        {filtering(filtered, techOptions, searching)}
+        <div className="px-10">
+          <h1 className="text-2xl">Frontend</h1>
+          {filtering(
+            filtered.sort((a, b) => a?.title - b?.title),
+            techOptions.sort((a, b) => a?.title - b?.title),
+            searching,
+            "Front-End"
+          )}
+          <h1 className="text-2xl">Backend</h1>
+          {filtering(
+            filtered.sort((a, b) => a?.title - b?.title),
+            techOptions.sort((a, b) => a?.title - b?.title),
+            searching,
+            "Back-End"
+          )}
+          <h1 className="text-2xl">Database</h1>
+          {filtering(
+            filtered.sort((a, b) => a?.title - b?.title),
+            techOptions.sort((a, b) => a?.title - b?.title),
+            searching,
+            "Database"
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
 export default Page;
-function filtering(filtered, techOptions, searching) {
+
+function filtering(filtered, techOptions, searching, category) {
   return <>{searching.length > 0 ? FilteredResult() : DefaultResult()}</>;
 
   function DefaultResult() {
-    return techOptions?.map((tech, i) => showTechStack(i, tech));
+    const categoryFiltered = techOptions.filter((i) => i.category == category);
+    return categoryFiltered?.map((tech, i) => showTechStack(i, tech));
   }
 
   function FilteredResult() {
-    return filtered.length > 0 ? (
-      filtered.map((tech, i) => showTechStack(i, tech))
+    const categoryFiltered = filtered.filter((i) => i.category == category);
+    return categoryFiltered.length > 0 ? (
+      categoryFiltered.map((tech, i) => showTechStack(i, tech))
     ) : (
       <div className="w-full font-bold text-red-500 flex  gap-x-10 items-center px-10 py-5 h-[5rem] rounded-xl">
         Not Found

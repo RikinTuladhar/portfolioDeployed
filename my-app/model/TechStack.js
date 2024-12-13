@@ -10,6 +10,10 @@ const TechStackSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
 });
 
 const TechStack =

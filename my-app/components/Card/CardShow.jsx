@@ -24,7 +24,7 @@ const CardShow = ({ project }) => {
     website_link,
   } = project;
   return (
-    <Card className="w-[15rem]  md:w-[25rem] bg-black text-color">
+    <Card className="w-[18rem]  md:w-[25rem] bg-black text-color">
       <CardHeader>
         <div className="w-full">
           <img src={image} alt="image of product" className="w-full h-full" />
@@ -41,7 +41,7 @@ const CardShow = ({ project }) => {
             </div>
             <div className="flex flex-col space-y-1.5">
               <label htmlFor="framework">Tech Stacks</label>
-              <div style={{objectFit:"contain"}} className="flex flex-wrap gap-x-5">
+              <div style={{objectFit:"contain"}} className="flex flex-wrap gap-y-5 gap-x-5">
                 {tech_stack.map((tech, i) => (
                   <img
                     src={`/techstack/${tech}.png`}
@@ -55,7 +55,7 @@ const CardShow = ({ project }) => {
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex flex-wrap justify-between gap-y-5 md:flex-nowrap">
         <a target="_blank" href={github_link}>
          <Button>View Github</Button>
         </a>

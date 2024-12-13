@@ -24,6 +24,7 @@ import MobileSideBar from "@/components/MobileSideBar";
 import projectApi from "./api/projects/projectsApi";
 import techstackApi from "./api/techstack/techstackApi";
 import LoadCardShow from "@/components/Card/LoadCardShow";
+import LoadTechStack from "@/components/Card/LoadTechStack";
 export default function Home() {
   const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(
@@ -55,57 +56,6 @@ export default function Home() {
 
   console.log("This si mobile view", mobileView);
 
-  const techstack = [
-    {
-      id: 1,
-      name: "React Js",
-      description: "This is react js",
-      image: "/techstack/react.png",
-    },
-    {
-      id: 2,
-      name: "Next Js",
-      description: "This is next js",
-      image: "/techstack/nextjs.png",
-    },
-    {
-      id: 3,
-      name: "Spring Boot",
-      description: "This is spring boot",
-      image: "/techstack/spring.png",
-    },
-    {
-      id: 4,
-      name: "Tailwind",
-      description: "This is tailwind",
-      image: "/techstack/tailwind.png",
-    },
-    {
-      id: 5,
-      name: "TypeScript",
-      description: "This is type script",
-      image: "/techstack/typescript.webp",
-    },
-    {
-      id: 5,
-      name: "Javascript",
-      description: "This is type script",
-      image: "/techstack/js.webp",
-    },
-    {
-      id: 5,
-      name: "Java",
-      description: "This is type script",
-      image: "/techstack/java.jfif",
-    },
-    {
-      id: 5,
-      name: "Firebase",
-      description: "This is type script",
-      image: "/techstack/firebase.png",
-    },
-  ];
-
   return (
     <>
       <div
@@ -119,7 +69,7 @@ export default function Home() {
         <div className=" w-full relative md:w-[80%]  py-0 md:py-5">
           {introduction()}
           {RecentProjects()}
-          {techstacks(techstack)}
+          {techstacks()}
         </div>
         {mobileView && <MobileSideBar />}
       </div>
@@ -142,16 +92,18 @@ function techstacks(techstack) {
 
   return (
     <div className="px-5 mt-20 md:px-20">
-      <h2 className="text-xl ">Tech Stacks</h2>
+      <h2 className="text-xl font-semibold ">Tech Stacks</h2>
       <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
-        {techStack.map((tech, i) => (
-          <Techstack
-            name={tech.title}
-            image={tech.image}
-            description={tech.description}
-            key={i}
-          />
-        ))}
+        {techStack.length > 0
+          ? techStack.map((tech, i) => (
+              <Techstack
+                name={tech.title}
+                image={tech.image}
+                description={tech.description}
+                key={i}
+              />
+            ))
+          : Array.from({ length: 4 }).map((_, i) => <LoadTechStack key={i} />)}
       </div>
       <div className="flex justify-center w-full">
         <Link href={"/techstacks"}>
@@ -164,6 +116,7 @@ function techstacks(techstack) {
 
 function RecentProjects() {
   const { getProjects } = projectApi();
+  const array = [1, 2, 3, 4];
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     getProjects()
@@ -174,15 +127,15 @@ function RecentProjects() {
   }, []);
   return (
     <div className="px-5 md:px-20">
-      <h2 className="text-xl ">Recent Projects</h2>
+      <h2 className="text-xl font-semibold">Recent Projects</h2>
       <div className="grid w-full grid-cols-1 gap-10 py-10 md:grid-cols-2 place-items-center">
-        {projects && projects.length > 0 ? (
-          projects.map((project, i) => <CardShow project={project} key={i} />)
-        ) : (
-          Array.from({length:4}).map((_,i)=>(
-            <LoadCardShow key={i} />
-          ))
-        )}
+        {projects.length > 0
+          ? projects.map((project, i) => <CardShow project={project} key={i} />)
+          : Array.from({ length: 6 })?.map((_, i) => (
+              <div key={i}>
+                <LoadCardShow />
+              </div>
+            ))}
       </div>
       <div className="flex items-center justify-center w-full py-2 ">
         <Link href={"/projects"}>
