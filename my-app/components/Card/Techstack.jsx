@@ -14,15 +14,15 @@ import Image from "next/image";
 
 const CardShow = ({name,image,description}) => {
   return (
-    <Card className="w-[15rem] md:w-[25rem] flex bg-black text-color">
-      <div className="w-[90%] py-4 px-4">
+    <Card className="w-[15rem] px-5 md:w-[25rem] justify-between flex bg-black text-color">
+      <div className="px-4 py-4">
         <div>
           <h3 className="font-bold">{name}</h3>
         </div>
         <p>{description}</p>
       </div>
-      <div className="w-[20%] flex items-center justify-center ">
-        <img src={image} className="size-16" alt="image of product" />
+      <div className="w-[10%]  flex items-center justify-center ">
+        <img src={image} className="w-full" alt="image of product" />
       </div>
     </Card>
   );

@@ -41,7 +41,7 @@ const CardShow = ({ project }) => {
             </div>
             <div className="flex flex-col space-y-1.5">
               <label htmlFor="framework">Tech Stacks</label>
-              <div style={{objectFit:"contain"}} className="flex  flex-wrap gap-x-5">
+              <div style={{objectFit:"contain"}} className="flex flex-wrap gap-x-5">
                 {tech_stack.map((tech, i) => (
                   <img
                     src={`/techstack/${tech}.png`}

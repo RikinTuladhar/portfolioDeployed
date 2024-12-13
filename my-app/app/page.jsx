@@ -22,6 +22,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleMobileView } from "@/redux/mobileView";
 import MobileSideBar from "@/components/MobileSideBar";
 import projectApi from "./api/projects/projectsApi";
+import techstackApi from "./api/techstack/techstackApi";
+import LoadCardShow from "@/components/Card/LoadCardShow";
 export default function Home() {
   const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(
@@ -103,6 +105,7 @@ export default function Home() {
       image: "/techstack/firebase.png",
     },
   ];
+
   return (
     <>
       <div
@@ -118,20 +121,32 @@ export default function Home() {
           {RecentProjects()}
           {techstacks(techstack)}
         </div>
-
         {mobileView && <MobileSideBar />}
       </div>
     </>
   );
 }
 function techstacks(techstack) {
+  const [techStack, setTechStack] = useState([]);
+  const { getTechStacks } = techstackApi();
+  useEffect(() => {
+    getTechStacks()
+      .then((res) => {
+        console.log(res);
+        setTechStack(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="px-5 mt-20 md:px-20">
       <h2 className="text-xl ">Tech Stacks</h2>
       <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
-        {techstack.map((tech, i) => (
+        {techStack.map((tech, i) => (
           <Techstack
-            name={tech.name}
+            name={tech.title}
             image={tech.image}
             description={tech.description}
             key={i}
@@ -161,17 +176,16 @@ function RecentProjects() {
     <div className="px-5 md:px-20">
       <h2 className="text-xl ">Recent Projects</h2>
       <div className="grid w-full grid-cols-1 gap-10 py-10 md:grid-cols-2 place-items-center">
-        {projects.length > 0 ? (projects.map((project, i) => (
-          <CardShow project={project} key={i} />
-        ))):(
-          <div className="text-3xl text-white">
-            Loading...
-          </div>
+        {projects && projects.length > 0 ? (
+          projects.map((project, i) => <CardShow project={project} key={i} />)
+        ) : (
+          Array.from({length:4}).map((_,i)=>(
+            <LoadCardShow key={i} />
+          ))
         )}
       </div>
       <div className="flex items-center justify-center w-full py-2 ">
         <Link href={"/projects"}>
-          {" "}
           <Button>View More</Button>
         </Link>
       </div>
