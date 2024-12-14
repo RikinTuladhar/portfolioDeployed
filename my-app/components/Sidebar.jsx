@@ -35,7 +35,17 @@ const Sidebar = () => {
           {/* {show ? <ChevronRight /> : <ChevronLeft />} */}
         </div>
       </div>
+
       <div>
+        <div className="flex flex-col items-center justify-center mb-4 ">
+          {" "}
+          <img
+            src="/mylogo.png"
+            className="size-10"
+            alt="Logo of my portfolio"
+          />
+          <div className="w-full my-2 bg-white h-[0.5px]"></div>
+        </div>
         <h5 className={`py-2 font-bold ${show ? "mt-5" : "mt-0"} `}>Menu</h5>
         {!show ? (
           <div className="px-5 py-2 space-y-4">

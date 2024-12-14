@@ -29,6 +29,7 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { SpotlightPreview } from "@/components/SpotlightPreview";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { FlipWords } from "@/components/ui/flip-words";
+import Recommendation from "@/components/Recommendation";
 export default function Home() {
   const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(
@@ -75,6 +76,7 @@ export default function Home() {
             {introduction()}
             {RecentProjects()}
             {techstacks()}
+            {RecommendationSection()}
           </BackgroundBeamsWithCollision>
         </div>
         {mobileView && <MobileSideBar />}
@@ -82,6 +84,13 @@ export default function Home() {
     </>
   );
 }
+function RecommendationSection() {
+  return <div className="px-5 mt-20 md:px-20">
+    <h1 className="text-xl font-bold">Words from Those Who Know Me Best</h1>
+    <Recommendation />
+  </div>;
+}
+
 function techstacks(techstack) {
   const [techStack, setTechStack] = useState([]);
   const { getTechStacks } = techstackApi();
@@ -133,7 +142,7 @@ function RecentProjects() {
   }, []);
   return (
     <div className="px-5 md:px-20">
-      <h2 className="text-xl font-semibold">Recent Projects</h2>
+      <h2 className="text-xl font-semibold">Show Case Projects</h2>
       <div className="grid w-full grid-cols-1 gap-10 py-10 md:grid-cols-2 place-items-center">
         {projects.length > 0
           ? projects?.map((project, i) => (

@@ -26,11 +26,11 @@ const CardShow = ({ project }) => {
   return (
     <Card className="w-[18rem]  md:w-[25rem] bg-black text-color">
       <CardHeader>
-        <div className="w-full">
+        <div className="aspect-video">
           <img src={image} alt="image of product" className="w-full h-full" />
         </div>
         <CardTitle className="py-4">{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription className="min-h-40">{description}</CardDescription>
       </CardHeader>
       <CardContent>
         <form>
@@ -39,9 +39,12 @@ const CardShow = ({ project }) => {
               <label htmlFor="name">Started Date: </label>
               <p className="text-gray-500 ">{start_date}</p>
             </div>
-            <div className="flex flex-col space-y-1.5">
+            <div className="flex flex-col min-h-10 space-y-1.5">
               <label htmlFor="framework">Tech Stacks</label>
-              <div style={{objectFit:"contain"}} className="flex flex-wrap gap-y-5 gap-x-5">
+              <div
+                style={{ objectFit: "contain" }}
+                className="flex flex-wrap gap-y-5 gap-x-5"
+              >
                 {tech_stack?.map((tech, i) => (
                   <img
                     src={`/techstack/${tech}.png`}
@@ -57,10 +60,10 @@ const CardShow = ({ project }) => {
       </CardContent>
       <CardFooter className="flex flex-wrap justify-between gap-y-5 md:flex-nowrap">
         <a target="_blank" href={github_link}>
-         <Button>View Github</Button>
+          <Button>View Github</Button>
         </a>
         <a target="_blank" href={website_link}>
-         <Button>View Live</Button>
+          <Button>View Live</Button>
         </a>
       </CardFooter>
     </Card>
