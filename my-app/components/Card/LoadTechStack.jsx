@@ -16,7 +16,10 @@ const LoadTechStack = ({ i }) => {
     >
       <div className="px-4 py-4">
         <div>
-          <h3 className="font-bold">{name}</h3>
+          <h3 className="font-bold">
+            {" "}
+            <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-20 "></div>
+          </h3>
         </div>
         <div>
           {" "}
@@ -27,7 +30,7 @@ const LoadTechStack = ({ i }) => {
         </div>
       </div>
       <div className="w-[10%]  flex items-center justify-center ">
-        <div className="flex items-center justify-center w-full  bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
+        <div className="flex items-center justify-center w-full bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
           <svg
             className="w-10 h-10 text-gray-200 dark:text-gray-600"
             aria-hidden="true"

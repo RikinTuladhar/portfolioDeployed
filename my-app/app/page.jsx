@@ -94,7 +94,7 @@ function techstacks(techstack) {
     <div className="px-5 mt-20 md:px-20">
       <h2 className="text-xl font-semibold ">Tech Stacks</h2>
       <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
-        {techStack.length > 0
+        {techStack && techStack?.length > 0
           ? techStack?.map((tech, i) => (
               <Techstack
                 name={tech.title}
