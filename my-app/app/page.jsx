@@ -25,6 +25,10 @@ import projectApi from "./api/projects/projectsApi";
 import techstackApi from "./api/techstack/techstackApi";
 import LoadCardShow from "@/components/Card/LoadCardShow";
 import LoadTechStack from "@/components/Card/LoadTechStack";
+import { Spotlight } from "@/components/ui/spotlight";
+import { SpotlightPreview } from "@/components/SpotlightPreview";
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+import { FlipWords } from "@/components/ui/flip-words";
 export default function Home() {
   const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(
@@ -67,9 +71,11 @@ export default function Home() {
         {!mobileView && <Sidebar />}
 
         <div className=" w-full relative md:w-[80%]  py-0 md:py-5">
-          {introduction()}
-          {RecentProjects()}
-          {techstacks()}
+          <BackgroundBeamsWithCollision>
+            {introduction()}
+            {RecentProjects()}
+            {techstacks()}
+          </BackgroundBeamsWithCollision>
         </div>
         {mobileView && <MobileSideBar />}
       </div>
@@ -130,7 +136,9 @@ function RecentProjects() {
       <h2 className="text-xl font-semibold">Recent Projects</h2>
       <div className="grid w-full grid-cols-1 gap-10 py-10 md:grid-cols-2 place-items-center">
         {projects.length > 0
-          ? projects?.map((project, i) => <CardShow project={project} key={i} />)
+          ? projects?.map((project, i) => (
+              <CardShow project={project} key={i} />
+            ))
           : Array.from({ length: 6 })?.map((_, i) => (
               <div key={i}>
                 <LoadCardShow />
@@ -147,12 +155,17 @@ function RecentProjects() {
 }
 
 function introduction() {
+  const words = ["My Digital World", "Portfolio", "My Virtual Space"];
   return (
-    <div className="w-full md:w-[80%] px-5 md:px-20 py-5 ">
+    <div className="w-full md:w-[100%] px-5 md:px-20 py-5">
       <div className="w-full py-10 space-y-3 ">
         <h1 className="text-4xl md:text-5xl">Rikin Tuladhar</h1>
         <h1 className="text-4xl md:text-5xl">
-          Welcome To <span className="text-primary">My Digital World</span>
+          Welcome To{" "}
+          <span className="text-primary">
+            {" "}
+            <FlipWords words={words} />{" "}
+          </span>
         </h1>
         <p>Designing and Crafting the Web</p>
         <p>
