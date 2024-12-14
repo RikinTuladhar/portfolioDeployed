@@ -40,7 +40,7 @@ function sidebar() {
             <h2 className="text-2xl font-bold">Admin Dashboard</h2>
           </div>
           <nav className="flex-1 px-4 py-6 space-y-2">
-            {navItems.map((item) => (
+            {navItems?.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}

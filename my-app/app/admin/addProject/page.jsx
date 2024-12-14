@@ -164,7 +164,7 @@ const page = () => {
             Tech Stack
           </label>
           <div className="flex flex-wrap gap-4">
-            {techOptions.map((tech) => (
+            {techOptions?.map((tech) => (
               <div key={tech} className="flex items-center">
                 <input
                   type="checkbox"

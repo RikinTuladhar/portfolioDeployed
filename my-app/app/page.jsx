@@ -95,7 +95,7 @@ function techstacks(techstack) {
       <h2 className="text-xl font-semibold ">Tech Stacks</h2>
       <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
         {techStack.length > 0
-          ? techStack.map((tech, i) => (
+          ? techStack?.map((tech, i) => (
               <Techstack
                 name={tech.title}
                 image={tech.image}
@@ -103,7 +103,7 @@ function techstacks(techstack) {
                 key={i}
               />
             ))
-          : Array.from({ length: 4 }).map((_, i) => <LoadTechStack key={i} />)}
+          : Array.from({ length: 4 })?.map((_, i) => <LoadTechStack key={i} />)}
       </div>
       <div className="flex justify-center w-full">
         <Link href={"/techstacks"}>
@@ -130,7 +130,7 @@ function RecentProjects() {
       <h2 className="text-xl font-semibold">Recent Projects</h2>
       <div className="grid w-full grid-cols-1 gap-10 py-10 md:grid-cols-2 place-items-center">
         {projects.length > 0
-          ? projects.map((project, i) => <CardShow project={project} key={i} />)
+          ? projects?.map((project, i) => <CardShow project={project} key={i} />)
           : Array.from({ length: 6 })?.map((_, i) => (
               <div key={i}>
                 <LoadCardShow />

@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import { date } from "zod";
 import React from "react";
 
 const LoadCardShow = () => {
@@ -64,7 +63,7 @@ const LoadCardShow = () => {
                 style={{ objectFit: "contain" }}
                 className="flex flex-wrap gap-x-5"
               >
-                {Array.from({ length: 6 }).map((tech, i) => (
+                {Array.from({ length: 6 })?.map((tech, i) => (
                   <div key={i} className="flex items-center justify-center bg-gray-300 rounded dark:bg-gray-700">
                     <svg
                       className="w-10 h-10 text-gray-200 dark:text-gray-600"

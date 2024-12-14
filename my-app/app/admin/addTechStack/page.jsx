@@ -197,7 +197,7 @@ function filtering(filtered, techOptions, searching, category) {
   function FilteredResult() {
     const categoryFiltered = filtered.filter((i) => i.category == category);
     return categoryFiltered.length > 0 ? (
-      categoryFiltered.map((tech, i) => showTechStack(i, tech))
+      categoryFiltered?.map((tech, i) => showTechStack(i, tech))
     ) : (
       <div className="w-full font-bold text-red-500 flex  gap-x-10 items-center px-10 py-5 h-[5rem] rounded-xl">
         Not Found

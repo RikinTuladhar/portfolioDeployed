@@ -68,7 +68,7 @@ const page = () => {
             {tech.length > 0
               ? tech
                   .filter((i) => i.category == "Front-End")
-                  .map((tech, i) => (
+                  ?.map((tech, i) => (
                     <Techstack
                       name={tech.title}
                       image={tech.image}
@@ -76,7 +76,7 @@ const page = () => {
                       key={i}
                     />
                   ))
-              : Array.from({ length: 4 }).map((_, i) => (
+              : Array.from({ length: 4 })?.map((_, i) => (
                   <LoadTechStack key={i} />
                 ))}
           </div>
@@ -86,7 +86,7 @@ const page = () => {
             {tech.length > 0
               ? tech
                   .filter((i) => i.category == "Back-End")
-                  .map((tech, i) => (
+                  ?.map((tech, i) => (
                     <Techstack
                       name={tech.title}
                       image={tech.image}
@@ -94,7 +94,7 @@ const page = () => {
                       key={i}
                     />
                   ))
-              : Array.from({ length: 4 }).map((_, i) => (
+              : Array.from({ length: 4 })?.map((_, i) => (
                   <LoadTechStack key={i} />
                 ))}
           </div>
@@ -103,8 +103,8 @@ const page = () => {
           <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
             {tech.length > 0
               ? tech
-                  .filter((i) => i.category == "Database")
-                  .map((tech, i) => (
+                  ?.filter((i) => i.category == "Database")
+                  ?.map((tech, i) => (
                     <Techstack
                       name={tech.title}
                       image={tech.image}
@@ -112,7 +112,7 @@ const page = () => {
                       key={i}
                     />
                   ))
-              : Array.from({ length: 4 }).map((_, i) => (
+              : Array.from({ length: 4 })?.map((_, i) => (
                   <LoadTechStack key={i} />
                 ))}
           </div>

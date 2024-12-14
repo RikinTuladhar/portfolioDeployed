@@ -64,10 +64,10 @@ const page = () => {
           <h2 className="text-3xl">Some of my projects</h2>
           <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
             {projects && projects.length > 0
-              ? projects.map((project, i) => (
+              ? projects?.map((project, i) => (
                   <CardShow project={project} key={i} />
                 ))
-              : array.map((_, i) => (
+              : array?.map((_, i) => (
                   <span key={i}>
                     <LoadCardShow key={i} />
                   </span>

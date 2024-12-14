@@ -209,7 +209,7 @@ function gamesIntro(techstack) {
     <div className="py-6">
       <h2 className="text-3xl">Games that I have played</h2>
       <div className="grid w-full grid-cols-1 gap-5 py-5 md:gap-10 md:py-10 md:grid-cols-2 place-items-center">
-        {techstack.map((tech, i) => (
+        {techstack?.map((tech, i) => (
           <Techstack
             name={tech.name}
             image={tech.image}

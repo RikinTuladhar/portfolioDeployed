@@ -19,7 +19,7 @@ const AdminSidebar = () => {
     <>
       {/* Mobile toggle button */}
       <button
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-gray-900 rounded-md"
+        className="fixed z-50 p-2 bg-gray-900 rounded-md lg:hidden top-4 left-4"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? (
@@ -40,7 +40,7 @@ const AdminSidebar = () => {
             <h2 className="text-2xl font-bold">Admin Dashboard</h2>
           </div>
           <nav className="flex-1 px-4 py-6 space-y-2">
-            {navItems.map((item) => (
+            {navItems?.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
